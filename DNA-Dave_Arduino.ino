@@ -16,7 +16,7 @@ const int protein = 11;      // the pin that the protein LED array is attached
 const int cog = A0;    // pin that the cog potentiometer is attached to
 const int buzzerAlgoM = 10;   //pin the buzzer is attached to. algoMusic only works on pin 10, as the appropriate timer registers are there(?)
 const int buzzer = 3;          //pin the buzzer is also attached to. This is the proper pin for making sounds based on tone()
-const int bigRed = 1;   //pin the big red LED of the switch that controls the head is attached to
+const int bigRed = 2;   //pin the big red LED of the switch that controls the head is attached to
 float voltage;            //voltage that the variable resistance is giving(proxy for cog position)
 float average;            //for the cog calibration
 float last_average;
@@ -264,16 +264,16 @@ void setup() {          // put your setup code here, to run once:
   analogWrite(buzzerAlgoM,1);             //algoMusic only works in pin 10
   MelodyUtils mel(buzzer);
   Serial.begin(9600);
-  pinMode(11, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(2,OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(9, OUTPUT);
+  pinMode(11, OUTPUT);//PWM to green LEDs
+  pinMode(3, OUTPUT);//buzzer
+  pinMode(2,OUTPUT);// transcription big red button LED
+  pinMode(10, OUTPUT);//buzzer
+  pinMode(9, OUTPUT);//color LEDs
   pinMode(8, OUTPUT);
   pinMode(7, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(5, OUTPUT);
-  pinMode(4, OUTPUT); // transcription big red button LED
+  pinMode(4, OUTPUT);
   pinMode(12, INPUT);    //armpit red
   pinMode(13, INPUT);    //armpit green
   average = analogRead(cog);
